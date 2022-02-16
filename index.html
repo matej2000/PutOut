@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Put Out! Start Menu</title>
+
+    <link rel="stylesheet" type="text/css" href="./common/style.css">
+
+</head>
+<body>
+    <img id="startmenu" src="common/images/StartMenu.png" usemap="#startmenu">
+
+    <map name="startmenu">
+        <area id="area0" shape="rect" href="90-gltf.html">
+        <area id="area1" shape="rect" href="howtoplay.html">  
+    </map>
+
+    <script>
+
+        let coordinates = [];
+        coordinates[0] = "825,433,1090,517";
+        coordinates[1] = "712,579,1200,660";
+
+
+        function setcoords() {
+            document.getElementById('startmenu').style.width = "auto";
+            let width1 = document.getElementById('startmenu').width;
+            document.getElementById('startmenu').style.width = "100%";
+            let width2 = document.getElementById('startmenu').width;
+            let ratio = width2 / width1;
+
+            for (let i = 0; i < coordinates.length; i++) {
+                let temp = coordinates[i].split(",");
+                let newcoords = "";
+                for (let j = 0; j < temp.length; j++) {
+                    temp[j] *= ratio;
+                    newcoords += temp[j] + ",";
+                }
+                newcoords = newcoords.substr(0, newcoords.length - 1);
+
+                document.getElementById("area" + i).coords = newcoords;
+            }
+        }
+
+       window.onload = function () {
+            setcoords();
+        };
+
+        window.onresize = function () {
+            setcoords();
+        };
+        
+    </script>
+
+
+
+
+</body>
+</html>

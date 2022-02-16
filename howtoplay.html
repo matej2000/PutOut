@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>How to Put Out!</title>
+
+    <link rel="stylesheet" type="text/css" href="./common/style.css">
+
+</head>
+<body>
+    
+    <img id="howtoplay" src="common/images/HowToPlay.png" usemap="#howtoplay">
+
+    <map name="howtoplay">
+        <area id="goback" shape="rect" href="index.html">
+    </map>
+
+    <script>
+
+        let coordinates = "730,770,1190,847";
+        
+        function setcoords() {
+            document.getElementById('howtoplay').style.width = "auto";
+            let width1 = document.getElementById('howtoplay').width;
+            document.getElementById('howtoplay').style.width = "100%";
+            let width2 = document.getElementById('howtoplay').width;
+            let ratio = width2 / width1;
+
+            let temp = coordinates.split(",");
+            let newcoords = "";
+            for (let j = 0; j < temp.length; j++) {
+                temp[j] *= ratio;
+                newcoords += temp[j] + ",";
+            }
+            newcoords = newcoords.substr(0, newcoords.length - 1);
+
+            document.getElementById("goback").coords = newcoords;
+        }
+
+       window.onload = function () {
+            setcoords();
+        };
+
+        window.onresize = function () {
+            setcoords();
+        };
+        
+    </script>
+
+</body>
+</html>
